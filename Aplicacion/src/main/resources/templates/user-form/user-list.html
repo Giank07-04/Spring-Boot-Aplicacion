@@ -11,14 +11,15 @@
 								</tr>
 								</thead>
 								<tbody>
-								<tr>
-									<th scope="row">1</th>
-									<td>Cristian</td>
-									<td>Ruiz</td>
-									<td>c.r.username</td>
-									<td>c.r.username@blog.com</td>
+								<tr th:each="user : ${userList}" th:object=${user}>
+									<th th:text="*{id}"></th>
+									<td th:text="*{firstName}">Cristian</td>
+									<td th:text="*{lastName}">Ruiz</td>
+									<td th:text="*{username}">c.r.username</td>
+									<td th:text="*{email}">c.r.username@blog.com</td>
 									<td>
-										<a href="#"><i class="fas fa-edit"></i></a> | <a href="#"><i class="fas fa-user-times"></i></a>
+										<a href="#" t:href="@{'/editUser'+${user.id}}"><i class="fas fa-edit"></i></a> 
+										| <a href="#" th:onclick="'javascript:confirmDelete(\''+ *{id} +'\');'"><i class="fas fa-user-times"></i></a>
 									</td>
 								</tr>
 								</tbody>
